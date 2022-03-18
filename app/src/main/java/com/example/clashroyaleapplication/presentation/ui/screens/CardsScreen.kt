@@ -40,6 +40,7 @@ fun CardsScreen(viewModel: CardsViewModel = getViewModel(), onFavoriteClick: () 
                 contentDescription = "logo",
                 modifier = Modifier
                     .height(100.dp)
+                    .padding(horizontal = 30.dp)
             )
             Image(
                 painter = painterResource(id = R.drawable.ic_baseline_star_24),
@@ -50,16 +51,6 @@ fun CardsScreen(viewModel: CardsViewModel = getViewModel(), onFavoriteClick: () 
                         onFavoriteClick()
                     }
             )
-        }
-
-        if (state.isDialogOpen) {
-            CustomAlertDialog("Do you want to save ?",
-                onDismissRequest = {
-                    viewModel.onEvent(CardsEvent.OnDismissClick)
-                },
-                clickPositive = {
-                    viewModel.onEvent(CardsEvent.OnFavoriteClick(viewModel.state.card))
-                })
         }
 
         LazyVerticalGrid(
@@ -84,6 +75,16 @@ fun CardsScreen(viewModel: CardsViewModel = getViewModel(), onFavoriteClick: () 
                     }
                 )
             }
+        }
+
+        if (state.isDialogOpen) {
+            CustomAlertDialog("Do you want to save ?",
+                onDismissRequest = {
+                    viewModel.onEvent(CardsEvent.OnDismissClick)
+                },
+                clickPositive = {
+                    viewModel.onEvent(CardsEvent.OnFavoriteClick(viewModel.state.card))
+                })
         }
     }
 }

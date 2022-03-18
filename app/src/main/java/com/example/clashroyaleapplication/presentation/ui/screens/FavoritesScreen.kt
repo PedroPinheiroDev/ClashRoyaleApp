@@ -41,16 +41,6 @@ fun FavoritesScreen(viewModel: FavoritesViewModel = getViewModel()) {
             )
         }
 
-        if (state.isDialogOpen) {
-            CustomAlertDialog(text = "Do you want to delete ?",
-                clickPositive = {
-                    viewModel.onEvent(FavoritesEvent.OnRemoveClick(card = state.card))
-                },
-                onDismissRequest = {
-                    viewModel.onEvent(FavoritesEvent.OnDismissClick)
-                })
-        }
-
         LazyVerticalGrid(
             cells = GridCells.Fixed(2),
             contentPadding = PaddingValues(8.dp)
@@ -67,6 +57,16 @@ fun FavoritesScreen(viewModel: FavoritesViewModel = getViewModel()) {
                     )
                 }
             }
+        }
+
+        if (state.isDialogOpen) {
+            CustomAlertDialog(text = "Do you want to delete ?",
+                clickPositive = {
+                    viewModel.onEvent(FavoritesEvent.OnRemoveClick(card = state.card))
+                },
+                onDismissRequest = {
+                    viewModel.onEvent(FavoritesEvent.OnDismissClick)
+                })
         }
     }
 }
