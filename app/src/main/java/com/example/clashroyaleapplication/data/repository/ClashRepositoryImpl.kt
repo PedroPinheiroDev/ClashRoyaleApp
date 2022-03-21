@@ -8,9 +8,8 @@ import com.example.clashroyaleapplication.domain.repository.ClashRepository
 class ClashRepositoryImpl(
     private val service: ClashApi
 ) : ClashRepository {
-    override suspend fun getAllRepositories(): List<Card> {
-        return runCatching {
+    override suspend fun getAllRepositories(): Result<List<Card>> =
+        runCatching {
             CardMapper().transform(service.getAllCards().body())
-        }.getOrThrow()
-    }
+        }
 }

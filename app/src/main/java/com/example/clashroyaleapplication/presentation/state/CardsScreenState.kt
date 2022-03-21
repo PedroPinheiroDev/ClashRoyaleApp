@@ -4,7 +4,7 @@ import com.example.clashroyaleapplication.domain.entity.Card
 
 data class CardsScreenState(
     val isDialogOpen: Boolean = false,
-    val isLoading: Boolean = true,
+    val error: Boolean = false,
     val card: Card = Card("", 0, 0, ""),
     val list: List<Card> = emptyList()
 )

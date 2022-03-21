@@ -24,10 +24,16 @@ class CardsViewModel(
 
     fun getCards() {
         launch {
-            state = state.copy(
-                list = getAllUseCase(),
-                isLoading = false
-            )
+            getAllUseCase()
+                .onSuccess {
+                    state = state.copy(
+                        list = it
+                    )
+                }.onFailure {
+                    state = state.copy(
+                        error = true
+                    )
+                }
         }
     }
 
