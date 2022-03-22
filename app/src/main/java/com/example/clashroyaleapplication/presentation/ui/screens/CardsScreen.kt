@@ -22,7 +22,7 @@ import org.koin.androidx.compose.getViewModel
 @ExperimentalFoundationApi
 @Composable
 fun CardsScreen(viewModel: CardsViewModel = getViewModel(), onFavoriteClick: () -> Unit = {}) {
-    val state = viewModel.state
+    val state = viewModel.state.collectAsState()
 
     Column(modifier = Modifier.fillMaxSize()) {
         Row(
@@ -53,7 +53,7 @@ fun CardsScreen(viewModel: CardsViewModel = getViewModel(), onFavoriteClick: () 
             cells = GridCells.Fixed(2),
             contentPadding = PaddingValues(8.dp)
         ) {
-            items(items = state.list) { item ->
+            items(items = state.value.list) { item ->
                 CardItem(
                     imageUrl = item.imageUrl,
                     name = item.name,
@@ -73,13 +73,13 @@ fun CardsScreen(viewModel: CardsViewModel = getViewModel(), onFavoriteClick: () 
             }
         }
 
-        if (state.isDialogOpen) {
+        if (state.value.isDialogOpen) {
             CustomAlertDialog("Do you want to save ?",
                 onDismissRequest = {
                     viewModel.onEvent(CardsEvent.OnDismissClick)
                 },
                 clickPositive = {
-                    viewModel.onEvent(CardsEvent.OnFavoriteClick(viewModel.state.card))
+                    viewModel.onEvent(CardsEvent.OnFavoriteClick(viewModel.state.value.card))
                 })
         }
     }

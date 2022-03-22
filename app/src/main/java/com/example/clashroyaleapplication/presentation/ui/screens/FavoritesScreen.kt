@@ -20,11 +20,7 @@ import org.koin.androidx.compose.getViewModel
 @ExperimentalFoundationApi
 @Composable
 fun FavoritesScreen(viewModel: FavoritesViewModel = getViewModel()) {
-    val state = viewModel.state
-
-    LaunchedEffect(key1 = true) {
-        viewModel.getFavoriteCards()
-    }
+    val state = viewModel.state.collectAsState()
 
     Column(modifier = Modifier.fillMaxSize()) {
         Row(
@@ -45,7 +41,7 @@ fun FavoritesScreen(viewModel: FavoritesViewModel = getViewModel()) {
             cells = GridCells.Fixed(2),
             contentPadding = PaddingValues(8.dp)
         ) {
-            items(items = state.list) { item ->
+            items(items = state.value.list) { item ->
                 CardItem(
                     imageUrl = item.imageUrl,
                     name = item.name
@@ -59,10 +55,10 @@ fun FavoritesScreen(viewModel: FavoritesViewModel = getViewModel()) {
             }
         }
 
-        if (state.isDialogOpen) {
+        if (state.value.isDialogOpen) {
             CustomAlertDialog(text = "Do you want to delete ?",
                 clickPositive = {
-                    viewModel.onEvent(FavoritesEvent.OnRemoveClick(card = state.card))
+                    viewModel.onEvent(FavoritesEvent.OnRemoveClick(card = state.value.card))
                 },
                 onDismissRequest = {
                     viewModel.onEvent(FavoritesEvent.OnDismissClick)

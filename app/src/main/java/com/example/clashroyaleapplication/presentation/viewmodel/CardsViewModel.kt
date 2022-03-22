@@ -1,13 +1,13 @@
 package com.example.clashroyaleapplication.presentation.viewmodel
 
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import com.example.clashroyaleapplication.domain.entity.Card
 import com.example.clashroyaleapplication.domain.usecase.GetAllCardsUseCase
 import com.example.clashroyaleapplication.domain.usecase.LocalCardsUseCase
 import com.example.clashroyaleapplication.presentation.event.CardsEvent
 import com.example.clashroyaleapplication.presentation.state.CardsScreenState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
@@ -19,8 +19,8 @@ class CardsViewModel(
     private val cardsUseCase: LocalCardsUseCase
 ) : BaseViewModel() {
 
-    var state by mutableStateOf(CardsScreenState())
-        private set
+    private var _state = MutableStateFlow(CardsScreenState())
+    var state = _state.asStateFlow()
 
     init {
         getCards()
@@ -30,13 +30,13 @@ class CardsViewModel(
         launch {
             getAllUseCase()
                 .onSuccess {
-                    state = state.copy(
-                        list = it
-                    )
+                    _state.update { state ->
+                        state.copy(list = it)
+                    }
                 }.onFailure {
-                    state = state.copy(
-                        error = true
-                    )
+                    _state.update { state ->
+                        state.copy(error = true)
+                    }
                 }
         }
     }
@@ -44,10 +44,12 @@ class CardsViewModel(
     fun onEvent(event: CardsEvent) {
         when (event) {
             is CardsEvent.OnClick -> {
-                state = state.copy(
-                    isDialogOpen = true,
-                    card = event.card
-                )
+                _state.update { state ->
+                    state.copy(
+                        isDialogOpen = true,
+                        card = event.card
+                    )
+                }
             }
             is CardsEvent.OnFavoriteClick -> {
                 launch {
@@ -55,10 +57,12 @@ class CardsViewModel(
                 }
             }
             is CardsEvent.OnDismissClick -> {
-                state = state.copy(
-                    isDialogOpen = false,
-                    card = Card("", 0, 0, "")
-                )
+                _state.update { state ->
+                    state.copy(
+                        isDialogOpen = false,
+                        card = Card("", 0, 0, "")
+                    )
+                }
             }
         }
     }

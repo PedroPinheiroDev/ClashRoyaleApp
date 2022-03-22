@@ -3,8 +3,6 @@ package com.example.clashroyaleapplication.domain.usecase
 import com.example.clashroyaleapplication.domain.entity.Card
 import com.example.clashroyaleapplication.domain.repository.CardRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.withContext
-import kotlin.coroutines.coroutineContext
 
 interface LocalCardsUseCase {
     suspend fun insertCard(card: Card)
