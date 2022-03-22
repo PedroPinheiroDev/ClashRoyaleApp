@@ -22,9 +22,11 @@ class FavoritesViewModel(
 
     fun getFavoriteCards() {
         launch {
-            state = state.copy(
-                list = localCardsUseCase.getAllCards()
-            )
+            localCardsUseCase.getAllCards().collect {
+                state = state.copy(
+                    list = it
+                )
+            }
         }
     }
 
@@ -45,7 +47,6 @@ class FavoritesViewModel(
             is FavoritesEvent.OnRemoveClick -> {
                 launch {
                     localCardsUseCase.deleteCard(event.card)
-                    getFavoriteCards()
                 }
             }
         }

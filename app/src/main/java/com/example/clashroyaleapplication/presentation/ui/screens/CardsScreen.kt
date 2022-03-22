@@ -24,10 +24,6 @@ import org.koin.androidx.compose.getViewModel
 fun CardsScreen(viewModel: CardsViewModel = getViewModel(), onFavoriteClick: () -> Unit = {}) {
     val state = viewModel.state
 
-    LaunchedEffect(key1 = true) {
-        viewModel.getCards()
-    }
-
     Column(modifier = Modifier.fillMaxSize()) {
         Row(
             modifier = Modifier

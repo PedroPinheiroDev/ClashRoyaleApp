@@ -2,6 +2,7 @@ package com.example.clashroyaleapplication.data.local
 
 import androidx.room.*
 import com.example.clashroyaleapplication.data.local.entity.CardLocal
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CardDao {
@@ -10,7 +11,7 @@ interface CardDao {
     suspend fun insertActivity(card: CardLocal)
 
     @Query("SELECT * FROM cards")
-    suspend fun getCards(): List<CardLocal>
+    fun getCards(): Flow<List<CardLocal>>
 
     @Delete
     suspend fun deleteCard(card: CardLocal)

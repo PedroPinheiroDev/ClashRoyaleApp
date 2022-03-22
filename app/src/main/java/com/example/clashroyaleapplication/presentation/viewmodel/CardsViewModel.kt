@@ -22,7 +22,11 @@ class CardsViewModel(
     var state by mutableStateOf(CardsScreenState())
         private set
 
-    fun getCards() {
+    init {
+        getCards()
+    }
+
+    private fun getCards() {
         launch {
             getAllUseCase()
                 .onSuccess {
