@@ -30,7 +30,8 @@ class FavoritesViewModel(
                     )
                 } else {
                     state.copy(
-                        list = it
+                        list = it,
+                        isEmpty = false
                     )
                 }
             }
