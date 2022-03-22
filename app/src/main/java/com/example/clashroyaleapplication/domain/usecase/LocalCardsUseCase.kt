@@ -20,7 +20,7 @@ class LocalCardsUseCaseImpl(
     }
 
     override suspend fun deleteCard(card: Card) {
-        return withContext(coroutineContext) { cardRepository.deleteCards(card) }
+        return cardRepository.deleteCards(card)
     }
 
     override suspend fun getAllCards(): Flow<List<Card>> {

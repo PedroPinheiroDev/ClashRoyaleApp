@@ -25,7 +25,8 @@ class FavoritesViewModel(
             localCardsUseCase.getAllCards().collect {
                 state = if (it.isEmpty()) {
                     state.copy(
-                        isEmpty = true
+                        isEmpty = true,
+                        list = it
                     )
                 } else {
                     state.copy(
