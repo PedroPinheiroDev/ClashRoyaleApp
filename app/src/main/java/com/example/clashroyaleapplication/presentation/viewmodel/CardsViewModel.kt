@@ -1,5 +1,7 @@
 package com.example.clashroyaleapplication.presentation.viewmodel
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.clashroyaleapplication.domain.entity.Card
 import com.example.clashroyaleapplication.domain.usecase.GetAllCardsUseCase
 import com.example.clashroyaleapplication.domain.usecase.LocalCardsUseCase
@@ -10,14 +12,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-/**
- * Using Dispatchers.IO by default (Defined in [BaseViewModel])
- */
-
 class CardsViewModel(
     private val getAllUseCase: GetAllCardsUseCase,
     private val cardsUseCase: LocalCardsUseCase
-) : BaseViewModel() {
+) : ViewModel() {
 
     private var _state = MutableStateFlow(CardsScreenState())
     var state = _state.asStateFlow()
@@ -27,7 +25,7 @@ class CardsViewModel(
     }
 
     private fun getCards() {
-        launch {
+        viewModelScope.launch {
             getAllUseCase()
                 .onSuccess {
                     _state.update { state ->
@@ -52,7 +50,7 @@ class CardsViewModel(
                 }
             }
             is CardsEvent.OnFavoriteClick -> {
-                launch {
+                viewModelScope.launch {
                     cardsUseCase.insertCard(card = event.card)
                 }
             }
