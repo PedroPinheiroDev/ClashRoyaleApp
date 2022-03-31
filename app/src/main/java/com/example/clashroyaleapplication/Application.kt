@@ -1,7 +1,8 @@
 package com.example.clashroyaleapplication
 
 import android.app.Application
-import com.example.clashroyaleapplication.data.di.networkModule
+import com.example.clashroyaleapplication.data.di.remoteModule
+import com.example.clashroyaleapplication.data.di.localModule
 import com.example.clashroyaleapplication.data.di.repositoryModule
 import com.example.clashroyaleapplication.domain.di.domainModule
 import com.example.clashroyaleapplication.presentation.viewmodel.viewModelModule
@@ -13,7 +14,15 @@ class Application : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@Application)
-            modules(listOf(domainModule, networkModule, repositoryModule, viewModelModule))
+            modules(
+                listOf(
+                    domainModule,
+                    remoteModule,
+                    localModule,
+                    viewModelModule,
+                    repositoryModule
+                )
+            )
         }
     }
 }
