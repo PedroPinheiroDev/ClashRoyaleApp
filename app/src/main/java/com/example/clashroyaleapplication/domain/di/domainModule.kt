@@ -1,20 +1,27 @@
 package com.example.clashroyaleapplication.domain.di
 
-import com.example.clashroyaleapplication.domain.usecase.GetAllCardsUseCase
-import com.example.clashroyaleapplication.domain.usecase.GetAllCardsUseCaseImpl
-import com.example.clashroyaleapplication.domain.usecase.LocalCardsUseCase
-import com.example.clashroyaleapplication.domain.usecase.LocalCardsUseCaseImpl
+import com.example.clashroyaleapplication.domain.usecase.*
 import org.koin.dsl.module
 
 val domainModule = module {
     factory {
-        GetAllCardsUseCaseImpl(
+        GetAllCardsRemoteUseCaseImpl(
             get()
-        ) as GetAllCardsUseCase
+        ) as GetAllCardsRemoteUseCase
     }
     factory {
-        LocalCardsUseCaseImpl(
+        GetAllCardsLocalUseCaseImpl(
             get()
-        ) as LocalCardsUseCase
+        ) as GetAllCardsLocalUseCase
+    }
+    factory {
+        DeleteCardUseCaseImpl(
+            get()
+        ) as DeleteCardUseCase
+    }
+    factory {
+        InsertCardUseCaseImpl(
+            get()
+        ) as InsertCardUseCase
     }
 }

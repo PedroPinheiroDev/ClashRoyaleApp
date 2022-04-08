@@ -5,7 +5,7 @@ import com.example.clashroyaleapplication.data.di.remoteModule
 import com.example.clashroyaleapplication.data.di.localModule
 import com.example.clashroyaleapplication.data.di.repositoryModule
 import com.example.clashroyaleapplication.domain.di.domainModule
-import com.example.clashroyaleapplication.presentation.viewmodel.viewModelModule
+import com.example.clashroyaleapplication.presentation.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

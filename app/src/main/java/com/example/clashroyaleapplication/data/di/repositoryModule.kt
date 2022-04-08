@@ -1,21 +1,21 @@
 package com.example.clashroyaleapplication.data.di
 
-import com.example.clashroyaleapplication.data.repository.CardRepositoryImpl
-import com.example.clashroyaleapplication.data.repository.ClashRepositoryImpl
-import com.example.clashroyaleapplication.domain.repository.CardRepository
-import com.example.clashroyaleapplication.domain.repository.ClashRepository
+import com.example.clashroyaleapplication.data.repository.LocalRepositoryImpl
+import com.example.clashroyaleapplication.data.repository.RemoteRepositoryImpl
+import com.example.clashroyaleapplication.domain.repository.LocalRepository
+import com.example.clashroyaleapplication.domain.repository.RemoteRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
     factory {
-        ClashRepositoryImpl(
+        RemoteRepositoryImpl(
             get()
-        ) as ClashRepository
+        ) as RemoteRepository
     }
 
     factory {
-        CardRepositoryImpl(
+        LocalRepositoryImpl(
             get()
-        ) as CardRepository
+        ) as LocalRepository
     }
 }
