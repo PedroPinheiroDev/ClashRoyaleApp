@@ -1,6 +1,5 @@
 package com.example.clashroyaleapplication.domain.usecase
 
-import com.example.clashroyaleapplication.data.mapper.CardMapper
 import com.example.clashroyaleapplication.domain.entity.Card
 import com.example.clashroyaleapplication.domain.repository.RemoteRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -12,14 +11,11 @@ interface GetAllCardsRemoteUseCase {
 }
 
 class GetAllCardsRemoteUseCaseImpl(
-    private val clashRepository: RemoteRepository,
-    private val mapper: CardMapper = CardMapper()
+    private val clashRepository: RemoteRepository
 ) : GetAllCardsRemoteUseCase {
     override suspend fun invoke(dispatcher: CoroutineDispatcher): Result<List<Card>> {
         return withContext(dispatcher) {
-            clashRepository.getAllCardsRemoteRepositories().map {
-                mapper.transform(it)
-            }
+            clashRepository.getAllCardsRemoteRepositories()
         }
     }
 }

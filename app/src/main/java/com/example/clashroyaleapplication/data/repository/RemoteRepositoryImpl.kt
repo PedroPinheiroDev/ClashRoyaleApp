@@ -1,14 +1,16 @@
 package com.example.clashroyaleapplication.data.repository
 
+import com.example.clashroyaleapplication.data.mapper.CardMapper
 import com.example.clashroyaleapplication.data.remote.ClashApi
-import com.example.clashroyaleapplication.data.remote.dto.CardsDTO
+import com.example.clashroyaleapplication.domain.entity.Card
 import com.example.clashroyaleapplication.domain.repository.RemoteRepository
 
 class RemoteRepositoryImpl(
-    private val service: ClashApi
+    private val service: ClashApi,
+    private val mapper: CardMapper = CardMapper()
 ) : RemoteRepository {
-    override suspend fun getAllCardsRemoteRepositories(): Result<CardsDTO?> =
+    override suspend fun getAllCardsRemoteRepositories(): Result<List<Card>> =
         runCatching {
-            service.getAllCards().body()
+            mapper.transform(service.getAllCards().body())
         }
 }
