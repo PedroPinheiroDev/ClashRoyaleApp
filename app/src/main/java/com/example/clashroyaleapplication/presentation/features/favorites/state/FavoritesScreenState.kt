@@ -1,4 +1,4 @@
-package com.example.clashroyaleapplication.presentation.favorites.state
+package com.example.clashroyaleapplication.presentation.features.favorites.state
 
 import com.example.clashroyaleapplication.domain.entity.Card
 import com.example.clashroyaleapplication.presentation.base.State

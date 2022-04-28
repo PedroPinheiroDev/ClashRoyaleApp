@@ -12,8 +12,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.clashroyaleapplication.presentation.cards.ui.CardsScreen
-import com.example.clashroyaleapplication.presentation.favorites.ui.FavoritesScreen
+import com.example.clashroyaleapplication.presentation.features.cards.ui.CardsScreen
+import com.example.clashroyaleapplication.presentation.features.favorites.ui.FavoritesScreen
 import com.example.clashroyaleapplication.presentation.splash.SplashScreen
 import com.example.clashroyaleapplication.presentation.core_ui.theme.ClashRoyaleApplicationTheme
 

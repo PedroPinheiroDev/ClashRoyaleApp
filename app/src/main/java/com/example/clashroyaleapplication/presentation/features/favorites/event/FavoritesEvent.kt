@@ -1,4 +1,4 @@
-package com.example.clashroyaleapplication.presentation.favorites.event
+package com.example.clashroyaleapplication.presentation.features.favorites.event
 
 import com.example.clashroyaleapplication.domain.entity.Card
 import com.example.clashroyaleapplication.presentation.base.Event

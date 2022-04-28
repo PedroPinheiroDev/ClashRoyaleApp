@@ -1,12 +1,12 @@
-package com.example.clashroyaleapplication.presentation.cards.viewmodel
+package com.example.clashroyaleapplication.presentation.features.cards.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.example.clashroyaleapplication.domain.entity.Card
 import com.example.clashroyaleapplication.domain.usecase.GetAllCardsRemoteUseCase
 import com.example.clashroyaleapplication.domain.usecase.InsertCardUseCase
 import com.example.clashroyaleapplication.presentation.base.BaseViewModel
-import com.example.clashroyaleapplication.presentation.cards.event.CardsScreenEvent
-import com.example.clashroyaleapplication.presentation.cards.state.CardsScreenState
+import com.example.clashroyaleapplication.presentation.features.cards.event.CardsScreenEvent
+import com.example.clashroyaleapplication.presentation.features.cards.state.CardsScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

@@ -1,4 +1,4 @@
-package com.example.clashroyaleapplication.presentation.cards.state
+package com.example.clashroyaleapplication.presentation.features.cards.state
 
 import com.example.clashroyaleapplication.domain.entity.Card
 import com.example.clashroyaleapplication.presentation.base.State

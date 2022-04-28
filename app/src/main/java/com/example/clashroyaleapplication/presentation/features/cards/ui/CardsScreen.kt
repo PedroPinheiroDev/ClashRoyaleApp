@@ -1,4 +1,4 @@
-package com.example.clashroyaleapplication.presentation.cards.ui
+package com.example.clashroyaleapplication.presentation.features.cards.ui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -13,10 +13,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.clashroyaleapplication.R
 import com.example.clashroyaleapplication.domain.entity.Card
-import com.example.clashroyaleapplication.presentation.cards.event.CardsScreenEvent
+import com.example.clashroyaleapplication.presentation.features.cards.event.CardsScreenEvent
 import com.example.clashroyaleapplication.presentation.core_ui.components.CardItem
 import com.example.clashroyaleapplication.presentation.core_ui.components.CustomAlertDialog
-import com.example.clashroyaleapplication.presentation.cards.viewmodel.CardsViewModel
+import com.example.clashroyaleapplication.presentation.features.cards.viewmodel.CardsViewModel
 import org.koin.androidx.compose.getViewModel
 
 @ExperimentalFoundationApi

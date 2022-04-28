@@ -1,4 +1,4 @@
-package com.example.clashroyaleapplication.presentation.favorites.ui
+package com.example.clashroyaleapplication.presentation.features.favorites.ui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -10,11 +10,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.clashroyaleapplication.presentation.favorites.event.FavoritesEvent
+import com.example.clashroyaleapplication.presentation.features.favorites.event.FavoritesEvent
 import com.example.clashroyaleapplication.R
 import com.example.clashroyaleapplication.presentation.core_ui.components.CardItem
 import com.example.clashroyaleapplication.presentation.core_ui.components.CustomAlertDialog
-import com.example.clashroyaleapplication.presentation.favorites.viewmodel.FavoritesViewModel
+import com.example.clashroyaleapplication.presentation.features.favorites.viewmodel.FavoritesViewModel
 import org.koin.androidx.compose.getViewModel
 
 @ExperimentalFoundationApi
