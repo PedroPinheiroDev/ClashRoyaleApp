@@ -17,7 +17,7 @@ class InsertCardUseCaseImpl(
 ) : InsertCardUseCase {
     override suspend operator fun invoke(card: Card, dispatcher: CoroutineDispatcher) {
         return withContext(dispatcher) {
-            cardRepository.insertCards(mapper.transform(card))
+            cardRepository.insertCards(mapper(card))
         }
     }
 }

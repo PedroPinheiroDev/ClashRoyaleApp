@@ -17,7 +17,7 @@ class DeleteCardUseCaseImpl(
 ) : DeleteCardUseCase {
     override suspend operator fun invoke(card: Card, dispatcher: CoroutineDispatcher) {
         return withContext(dispatcher) {
-            cardRepository.deleteCards(mapper.transform(card))
+            cardRepository.deleteCards(mapper(card))
         }
     }
 }

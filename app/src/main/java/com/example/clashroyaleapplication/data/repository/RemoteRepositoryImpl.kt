@@ -11,6 +11,6 @@ class RemoteRepositoryImpl(
 ) : RemoteRepository {
     override suspend fun getAllCardsRemoteRepositories(): Result<List<Card>> =
         runCatching {
-            mapper.transform(service.getAllCards().body())
+            mapper(service.getAllCards().body())
         }
 }

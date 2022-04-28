@@ -14,7 +14,7 @@ class LocalRepositoryImpl(
 ) : LocalRepository {
     override suspend fun getAllCardsLocal(): Flow<List<Card>> = flow {
         dao.getCards().collect {
-            emit(mapper.transform(it))
+            emit(mapper(it))
         }
     }
 

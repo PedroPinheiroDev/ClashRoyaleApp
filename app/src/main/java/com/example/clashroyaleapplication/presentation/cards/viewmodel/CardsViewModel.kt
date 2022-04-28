@@ -1,10 +1,10 @@
 package com.example.clashroyaleapplication.presentation.cards.viewmodel
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.clashroyaleapplication.domain.entity.Card
 import com.example.clashroyaleapplication.domain.usecase.GetAllCardsRemoteUseCase
 import com.example.clashroyaleapplication.domain.usecase.InsertCardUseCase
+import com.example.clashroyaleapplication.presentation.base.BaseViewModel
 import com.example.clashroyaleapplication.presentation.cards.event.CardsScreenEvent
 import com.example.clashroyaleapplication.presentation.cards.state.CardsScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,10 +15,10 @@ import kotlinx.coroutines.launch
 class CardsViewModel(
     private val getAllUseCase: GetAllCardsRemoteUseCase,
     private val insertCardUseCase: InsertCardUseCase
-) : ViewModel() {
+) : BaseViewModel<CardsScreenEvent, CardsScreenState>() {
 
-    private var _state = MutableStateFlow(CardsScreenState())
-    var state = _state.asStateFlow()
+    private val _state = MutableStateFlow(CardsScreenState())
+    override val state = _state.asStateFlow()
 
     init {
         getCards()
@@ -39,7 +39,7 @@ class CardsViewModel(
         }
     }
 
-    fun onEvent(event: CardsScreenEvent) {
+    override fun onEvent(event: CardsScreenEvent) {
         when (event) {
             is CardsScreenEvent.OnClick -> {
                 _state.update { state ->
